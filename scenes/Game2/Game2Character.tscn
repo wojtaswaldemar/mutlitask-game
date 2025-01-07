@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ig8mvfwm765a"]
+
+[ext_resource type="Script" path="res://scripts/Game2Character.cs" id="1_01vgr"]
+[ext_resource type="Texture2D" uid="uid://bvb72y4hgxppj" path="res://assets/Player_jump.png" id="1_7ef5v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_raucd"]
+size = Vector2(14, 31)
+
+[node name="Game2Character" type="CharacterBody2D"]
+script = ExtResource("1_01vgr")
+
+[node name="Game2CharacterSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_7ef5v")
+
+[node name="Game2CollisionSprite" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_raucd")

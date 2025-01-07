@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7ygdh3b8ush0"]
+
+[ext_resource type="Script" path="res://scripts/Game3.cs" id="1_maqyf"]
+[ext_resource type="PackedScene" uid="uid://ccgc11t2rc687" path="res://scenes/Game3/Game3Character.tscn" id="1_qngxm"]
+[ext_resource type="PackedScene" uid="uid://dnpytgnv2s5s7" path="res://scenes/Game3/Game3Enemy.tscn" id="2_dymlu"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_j1yy7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hipsg"]
+size = Vector2(0, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3rj4"]
+size = Vector2(0.5, 318)
+
+[node name="Game3" type="Node2D"]
+script = ExtResource("1_maqyf")
+EnemyScene = ExtResource("2_dymlu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0.698039, 1)
+z_index = -2
+scale = Vector2(576, 324)
+texture = SubResource("CanvasTexture_j1yy7")
+
+[node name="BoardGame3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2DLeft" type="CollisionShape2D" parent="BoardGame3"]
+position = Vector2(-288, 0)
+shape = SubResource("RectangleShape2D_hipsg")
+
+[node name="CollisionShape2DRight" type="CollisionShape2D" parent="BoardGame3"]
+position = Vector2(287.25, 3)
+shape = SubResource("RectangleShape2D_e3rj4")
+
+[node name="Game3Character" parent="." instance=ExtResource("1_qngxm")]
+
+[node name="Spawners" type="Node" parent="."]
+
+[node name="Left" type="Node" parent="Spawners"]
+
+[node name="MarkerLeft1" type="Marker2D" parent="Spawners/Left"]
+position = Vector2(-250, -140)
+
+[node name="MarkerLeft2" type="Marker2D" parent="Spawners/Left"]
+position = Vector2(-250, -70)
+
+[node name="MarkerLeft3" type="Marker2D" parent="Spawners/Left"]
+position = Vector2(-250, 0)
+
+[node name="MarkerLeft4" type="Marker2D" parent="Spawners/Left"]
+position = Vector2(-250, 70)
+
+[node name="MarkerLeft5" type="Marker2D" parent="Spawners/Left"]
+position = Vector2(-250, 140)
+
+[node name="Right" type="Node" parent="Spawners"]
+
+[node name="MarkerRight1" type="Marker2D" parent="Spawners/Right"]
+position = Vector2(250, -140)
+
+[node name="MarkerRight2" type="Marker2D" parent="Spawners/Right"]
+position = Vector2(250, -70)
+
+[node name="MarkerRight3" type="Marker2D" parent="Spawners/Right"]
+position = Vector2(250, 0)
+
+[node name="MarkerRight4" type="Marker2D" parent="Spawners/Right"]
+position = Vector2(250, 70)
+
+[node name="MarkerRight5" type="Marker2D" parent="Spawners/Right"]
+position = Vector2(250, 140)
+
+[node name="SpawnerTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+process_callback = 0
+wait_time = 2.0
+
+[connection signal="timeout" from="SpawnerTimer" to="." method="_on_spawner_timer_timeout"]

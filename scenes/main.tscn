@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch6etfgqx7yhh"]
+
+[ext_resource type="PackedScene" uid="uid://p7xuq343eoii" path="res://scenes/game_1.tscn" id="1_5tv8v"]
+[ext_resource type="PackedScene" uid="uid://4we4ufuxuv3s" path="res://scenes/game_2.tscn" id="2_7mjlh"]
+[ext_resource type="PackedScene" uid="uid://b7ygdh3b8ush0" path="res://scenes/game_3.tscn" id="3_8phob"]
+[ext_resource type="PackedScene" uid="uid://bh1ywggur40s1" path="res://scenes/game_4.tscn" id="4_0ag5n"]
+[ext_resource type="Script" path="res://scripts/GameManager.cs" id="5_1lmvr"]
+
+[node name="Main" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("5_1lmvr")
+
+[node name="Game1" parent="." instance=ExtResource("1_5tv8v")]
+position = Vector2(-288, -162)
+
+[node name="Game2" parent="." instance=ExtResource("2_7mjlh")]
+position = Vector2(288, -162)
+
+[node name="Game3" parent="." instance=ExtResource("3_8phob")]
+position = Vector2(-288, 162)
+
+[node name="Game4" parent="." instance=ExtResource("4_0ag5n")]
+position = Vector2(288, 162)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="LostScreen" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -581.0
+offset_top = -338.0
+offset_right = 583.0
+offset_bottom = 328.0
+color = Color(0.157565, 0.00147879, 0.191156, 1)
+
+[node name="Lost" type="VBoxContainer" parent="LostScreen"]
+z_index = 4096
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -575.5
+offset_top = -83.0
+offset_right = 575.5
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Lost" type="Label" parent="LostScreen/Lost"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "YOU HAVE LOST"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LostTo" type="Label" parent="LostScreen/Lost"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Died to: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="LostScreen/Lost"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Survieved: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighScore" type="Label" parent="LostScreen/Lost"]
+layout_mode = 2
+text = "Highest Score is {highScoreManager.HighScore}."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="LostScreen"]
+visible = false
+layout_mode = 2
+offset_left = 4.0
+offset_top = 374.0
+offset_right = 1155.0
+offset_bottom = 405.0
+size_flags_vertical = 8
+disabled = true
+text = "Press Space or Here to Restart"
+flat = true
